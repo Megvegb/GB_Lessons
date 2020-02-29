@@ -1,6 +1,6 @@
 package task_1.competitors;
 
-public class Sportsman extends Human {
+public class Sportsman extends Human { // класс супер человека у которого можно поменять максимальные значения через конструктор.
     private String name;
     private int maxRunDist;
     private int maxJumpHgt;
