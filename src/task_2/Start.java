@@ -15,6 +15,7 @@ public class Start {
     private static String[][] arr;
     private static Scanner sc = new Scanner(System.in);
     private static int sum = 0;
+    public static String incorrectString;
 
 
     public static void main(String[] args) { // главный метод, запускает работу приложения и обрабатывает исключения
@@ -64,7 +65,7 @@ public class Start {
                 if (isInteger(arr[i][j])) {
                     sum += Integer.parseInt(arr[i][j]);
                 } else
-                    throw new MyArrayDataException("В строке найдены символы или текст");
+                    throw new MyArrayDataException("В строке найдены символы или текст", incorrectString);
             }
         }
     }
