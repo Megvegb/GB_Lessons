@@ -1,10 +1,11 @@
 package task_2;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+/**
+ * @Autor Vladimir Medvedev
+ * @Group GU_Android_394
+ * @Date 02/03/2020
+ */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Start {
@@ -16,7 +17,7 @@ public class Start {
     private static int sum = 0;
 
 
-    public static void main(String[] args) throws MyArraySizeException {
+    public static void main(String[] args) { // главный метод, запускает работу приложения и обрабатывает исключения
         userSizeArrayInput();
         arr = new String[stringSize][columnSize];
         try {
@@ -24,11 +25,15 @@ public class Start {
         } catch (MyArraySizeException e) {
             e.printStackTrace();
         } finally {
-            fillArray(arr);
+            try {
+                System.out.println("Результат сложения = " + fillArray(arr));
+            } catch (MyArrayDataException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public static void userSizeArrayInput() {
+    public static void userSizeArrayInput() {  // метод принимает на вход данные
         System.out.println("Пожалуйста создайте двумерный массив размером " + correctSIZE + " x " + correctSIZE);
         stringSize = sc.nextInt();
         columnSize = sc.nextInt();
@@ -40,7 +45,7 @@ public class Start {
         }
     }
 
-    public static void fillArray(String[][] arr) {
+    public static int fillArray(String[][] arr) throws MyArrayDataException {
         System.out.println("Теперь введите числовые значения для заполнения строк,\n" +
                 "в данном случае значений будет " + stringSize * columnSize);
         for (int i = 0; i < stringSize; i++) {
@@ -48,17 +53,20 @@ public class Start {
                 arr[i][j] = sc.next();
             }
         }
+        sumArray(arr);
+        return sum;
+    }
+
+    public static void sumArray(String[][] arr) throws MyArrayDataException {
 
         for (int i = 0; i < stringSize; i++) {
             for (int j = 0; j < columnSize; j++) {
                 if (isInteger(arr[i][j])) {
                     sum += Integer.parseInt(arr[i][j]);
                 } else
-                    System.out.println("В строке найдены символы или текст");
-//                    throw new MyArrayDataException("В строке найдены символы или текст");
+                    throw new MyArrayDataException("В строке найдены символы или текст");
             }
         }
-        System.out.println("Результат работы метода = " + sum);
     }
 
     public static boolean isInteger(String s) {
