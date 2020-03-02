@@ -52,14 +52,13 @@ public class Start {
         for (int i = 0; i < stringSize; i++) {
             for (int j = 0; j < columnSize; j++) {
                 if (isInteger(arr[i][j])) {
-                    sum = Integer.parseInt(arr[i][j]);//  System.out.println(num);
-                    System.out.println(sum); // некорректное сложение символов
+                    sum += Integer.parseInt(arr[i][j]);
                 } else
                     System.out.println("В строке найдены символы или текст");
 //                    throw new MyArrayDataException("В строке найдены символы или текст");
             }
         }
-//        System.out.println(sum);
+        System.out.println("Результат работы метода = " + sum);
     }
 
     public static boolean isInteger(String s) {
