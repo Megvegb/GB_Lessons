@@ -13,6 +13,7 @@ public class Start {
     private static int columnSize;
     private static String[][] arr;
     private static Scanner sc = new Scanner(System.in);
+    private static int sum = 0;
 
 
     public static void main(String[] args) throws MyArraySizeException {
@@ -34,28 +35,31 @@ public class Start {
     }
 
     public static void test(String[][] arr) throws MyArraySizeException {
-        if (arr.length != correctSIZE) { // обработать позже, если вводить 2 и 3
-            throw new MyArraySizeException("Размер массива некорректен - " + arr.length + " x " + arr.length, arr.length);
+        if (stringSize != correctSIZE || columnSize != correctSIZE) { // обработать позже, если вводить 2 и 3
+            throw new MyArraySizeException("Размер массива некорректен - " + stringSize + " x " + columnSize, arr.length);
         }
     }
 
-    public static void fillArray(String[][] arr) { // печатается на одно значение меньше чем должно
+    public static void fillArray(String[][] arr) {
         System.out.println("Теперь введите числовые значения для заполнения строк,\n" +
                 "в данном случае значений будет " + stringSize * columnSize);
-        for (int i = 0; i < columnSize; i++) {
+        for (int i = 0; i < stringSize; i++) {
             for (int j = 0; j < columnSize; j++) {
                 arr[i][j] = sc.next();
             }
         }
 
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length; j++) {
+        for (int i = 0; i < stringSize; i++) {
+            for (int j = 0; j < columnSize; j++) {
                 if (isInteger(arr[i][j])) {
-                    System.out.println(arr[i][j]);
-//                    int num = Integer.parseInt(arr[i][j]);//  System.out.println(num);
-                } else System.out.println("Обнаружен символ");
+                    sum = Integer.parseInt(arr[i][j]);//  System.out.println(num);
+                    System.out.println(sum); // некорректное сложение символов
+                } else
+                    System.out.println("В строке найдены символы или текст");
+//                    throw new MyArrayDataException("В строке найдены символы или текст");
             }
         }
+//        System.out.println(sum);
     }
 
     public static boolean isInteger(String s) {
