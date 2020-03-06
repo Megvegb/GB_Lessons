@@ -5,7 +5,9 @@ public class MyArraySizeException extends Exception {
 
     public MyArraySizeException(String message, int length){
         super(message);
+
         this.length = length;
+
     }
 
 }

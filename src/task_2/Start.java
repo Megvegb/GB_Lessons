@@ -6,6 +6,16 @@ package task_2;
  * @Date 02/03/2020
  */
 
+/*
+1. Напишите метод, на вход которого подается двумерный строковый массив размером 4х4, при подаче массива другого
+размера необходимо бросить исключение MyArraySizeException.
+2. Далее метод должен пройтись по всем элементам массива, преобразовать в int, и просуммировать. Если в каком-то
+элементе массива преобразование не удалось (например, в ячейке лежит символ или текст вместо числа), должно быть
+брошено исключение MyArrayDataException – с детализацией, в какой именно ячейке лежат неверные данные.
+3. В методе main() вызвать полученный метод, обработать возможные исключения MySizeArrayException и
+MyArrayDataException и вывести результат расчета.
+ */
+
 import java.util.Scanner;
 
 public class Start {
@@ -15,6 +25,7 @@ public class Start {
     private static String[][] arr;
     private static Scanner sc = new Scanner(System.in);
     private static int sum = 0;
+    public static String incorrectString;
 
 
     public static void main(String[] args) { // главный метод, запускает работу приложения и обрабатывает исключения
@@ -63,8 +74,9 @@ public class Start {
             for (int j = 0; j < columnSize; j++) {
                 if (isInteger(arr[i][j])) {
                     sum += Integer.parseInt(arr[i][j]);
+                    incorrectString = i + "" + j;
                 } else
-                    throw new MyArrayDataException("В строке найдены символы или текст");
+                    throw new MyArrayDataException("В строке найдены символы или текст, см. ячейку №", incorrectString);
             }
         }
     }
