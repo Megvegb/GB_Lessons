@@ -12,7 +12,7 @@ public class CollectionTest {
     private static PhoneBook phoneBook;
 
     public static void main(String[] args) {
-//        findString(); // task_3.1
+        findString(); // task_3.1
         phoneBookInit(); // task 3.2
 
     }
